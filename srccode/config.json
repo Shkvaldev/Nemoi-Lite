@@ -1,0 +1,5 @@
+{
+    "GREETING": "Привет, меня зовут Немой, и я буду переводить голосовые в текст :3",
+    "TELEGRAM_API_TOKEN": "",
+    "VOSK_MODEL_PATH": "vosk-model-small-ru-0.22"
+}

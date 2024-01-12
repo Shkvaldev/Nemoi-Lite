@@ -1,0 +1,10 @@
+[Unit]
+  Description=Nemoi STT Lite(for Telegram)
+
+[Service]
+  WorkingDirectory=/usr/share/nemoi-stt-lite/run/src
+  ExecStart=/usr/share/nemoi-stt-lite/run/bin/python main.py
+  Type=simple
+
+[Install]
+  WantedBy=multi-user.target

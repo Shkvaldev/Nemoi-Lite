@@ -1,0 +1,30 @@
+post_install() {
+
+    echo "[*] Creating virtual environment for bot ..."
+    sleep 1
+    cd /usr/share/nemoi-stt-lite
+    python -m venv run
+    
+    echo "[*] Placing files ..."
+    sleep 1
+    mv /usr/share/nemoi-stt-lite/srccode /usr/share/nemoi-stt-lite/run/src
+
+    echo "[*] Installing python dependences ..."
+    sleep 1
+    /usr/share/nemoi-stt-lite/run/bin/pip install -r /usr/share/nemoi-stt-lite/run/src/requirements.txt 
+
+    echo "[*] All done :)"
+    echo "[!] Don't forget to add your's Telegram bot token into /usr/share/nemoi-stt-lite/run/src/config.json and run 'sudo systemctl daemon-reload && sudo systemctl start nemoi-stt-lite'"
+}
+
+pre_remove() {
+
+    echo "[*] Deleting Nemoi STT Lite files ..."
+    rm -rf /usr/share/nemoi-stt-lite
+
+    echo "[*] Deleting Nemoi STT Lite daemon ..."
+    sudo systemctl stop nemoi-stt-lite
+    rm -rf /etc/systemd/system/nemoi-stt-lite.service
+    sudo systemctl daemon-reload
+    echo "[*] Bye and see you later ;)"
+}
