@@ -16,8 +16,13 @@ sudo pacman -Sy python python-pip ffmpeg
 ```shell
 git clone URL
 ```
-3. Добавляем токен (регистрируем у BotFather) в /usr/share/nemoi-stt-lite/run/src/config.json
-4. Запускаем бота:
+3. Добавляем токен (регистрируем у BotFather) в srcсode/config.json
+4. Устанавливаем бота при помощи PKGBUILD:
+```shell
+cd Nemoi-Lite
+makepkg -si
+```
+5. Запускаем бота:
 ```shell
 sudo systemctl daemon-reload
 sudo systemctl start nemoi-stt-lite

@@ -1,9 +1,7 @@
 import time
-
 import aiogram
 import asyncio
 from aiogram import types
-#from magic_filter import F
 from aiogram import F
 from aiogram.filters.command import Command
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -25,9 +23,9 @@ class TGBot:
         async def start_command(message: types.Message):
             await message.answer(self.core.config["GREETING"])
 
-        @self.dp.message(F.voice) # TODO: add F.audio support
+        @self.dp.message(F.voice)
         async def user_input_handler(message: types.Message):
-            file_name = message.voice.file_id # Get voice's id
+            file_name = message.voice.file_id
             await self.bot.download(file=file_name, destination=f"{file_name}.ogg")
             answer = self.core.stt.recognize(f"{file_name}.ogg")
             if answer:
@@ -40,3 +38,4 @@ class TGBot:
             asyncio.run(self.dp.start_polling(self.bot, skip_updates=True))
         except Exception as e:
             exit(f"[!] Can not start TGBot: {e}")
+            
